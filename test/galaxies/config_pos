@@ -1,0 +1,12 @@
+from fakes import positionGalSimFakes
+
+root.fakes.retarget(positionGalSimFakes.PositionGalSimFakesTask)
+root.fakes.galList = 'galaxy_test_pos.fits'
+root.fakes.galType = 'sersic'
+#include cmodels here
+root.measurement.algorithms.names.add('multishapelet.psf')
+root.measurement.algorithms.names.add('cmodel')
+root.measurement.slots.modelFlux = 'cmodel.flux'
+root.calibrate.measurePsf.starSelector['mitaka'].doPlots=False
+#turn off re-estimate the background after source detection this only checks the cmodel mags
+root.detection.reEstimateBackground=False

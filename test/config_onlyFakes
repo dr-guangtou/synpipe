@@ -1,0 +1,8 @@
+#example configuration for only running measurement on fake sources (and sources blended with them) in the coadd using stack.py 
+#
+#The command to run would look like:
+#stack.py /path/to/data --rerun=rerun/dir --id tract=tract1^tract2 filter=HSC-I patch=patch1^patch2... --selectId visit=visit1^visit2 --queue small --nodes 4 --procs 9 --job myJob --clobber-config -C config_onlyFakes --config doOverwriteOutput=True doOverwriteCoadd=True makeCoaddTempExp.doOverwrite=True 
+#the last three options are needed if you added the fake sources to already processed data, otherwise the pipeline will skip making the coadd and use the coadd without any fake sources
+
+import fakes.detectOnlyFakes
+root.processCoadd.detectCoaddSources.detection.retarget(fakes.detectOnlyFakes.OnlyFakesDetectionTask)

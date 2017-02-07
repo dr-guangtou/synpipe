@@ -1,0 +1,14 @@
+#example configuration for only running measurement on fake sources (and sources blended with them) in the coadd using multiBand.py 
+#
+#The command to run would look like:
+#multiBand.py /path/to/data --rerun=rerun_old:rerun_new --id tract=tract1^tract2 filter=filter1^filter2 patch=patch1^patch2 --queue small --nodes 4 --procs 9 --job myJob --clobber-config -C config_onlyFakes_multiBand --mpiexec='-bind-to socket' --time 1000
+
+#import fakes.mergeOnlyFakes
+#root.measureCoaddSources.retarget(fakes.mergeOnlyFakes.OnlyFakesMergeTask)
+
+root.measureCoaddSources.propagateFlags.flags={}
+root.clobberMergedDetections = True
+root.clobberMeasurements = True
+root.clobberMergedMeasurements = True
+root.clobberForcedPhotometry = True
+

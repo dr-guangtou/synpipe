@@ -1,0 +1,8 @@
+import fakes.randomStarFakes as randomStarFakes
+import os
+
+root.fakes.retarget(randomStarFakes.RandomStarFakeSourcesTask)
+root.fakes.nStars = 100
+root.fakes.magnitude = 22
+#turn off re-estimate the background after source detection this only checks the cmodel mags
+root.detection.reEstimateBackground=False

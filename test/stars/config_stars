@@ -1,0 +1,12 @@
+import fakes.randomStarFakes as randomStarFakes
+
+root.fakes.retarget(randomStarFakes.RandomStarFakeSourcesTask)
+root.fakes.nStars=NSTARS
+root.fakes.magnitude=MAGSTARS
+#include cmodels here
+root.measurement.algorithms.names.add('multishapelet.psf')
+root.measurement.algorithms.names.add('cmodel')
+root.measurement.slots.modelFlux = 'cmodel.flux'
+root.calibrate.measurePsf.starSelector['mitaka'].doPlots=False
+#turn off re-estimate the background after source detection this only checks the cmodel mags
+root.detection.reEstimateBackground=False
