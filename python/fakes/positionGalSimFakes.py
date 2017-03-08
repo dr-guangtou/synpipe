@@ -243,16 +243,33 @@ class PositionGalSimFakesTask(FakeSourcesTask):
             self.log.info("Adding fake %s at: %.1f,%.1f" % (str(galident),
                                                             galXY.getX(),
                                                             galXY.getY()))
-            # Set bit mask
-            galMaskedImage.getMask().set(self.bitmask)
 
-            maskedImage = exposure.getMaskedImage()
+            galMaskedImage.getMask().set(self.bitmask)
             try:
-                maskedImage.getMask().removeAndClearMaskPlane('CROSSTALK', True)
+                galMaskedImage.getMask().removeAndClearMaskPlane('FAKE',
+                                                                 True)
             except Exception:
                 pass
             try:
-                maskedImage.getMask().removeAndClearMaskPlane('UNMASKEDNAN', True)
+                galMaskedImage.getMask().removeAndClearMaskPlane('CROSSTALK',
+                                                                 True)
+            except Exception:
+                pass
+            try:
+                galMaskedImage.getMask().removeAndClearMaskPlane('UNMASKEDNAN',
+                                                                 True)
+            except Exception:
+                pass
+
+            maskedImage = exposure.getMaskedImage()
+            try:
+                maskedImage.getMask().removeAndClearMaskPlane('CROSSTALK',
+                                                              True)
+            except Exception:
+                pass
+            try:
+                maskedImage.getMask().removeAndClearMaskPlane('UNMASKEDNAN',
+                                                              True)
             except Exception:
                 pass
             try:
@@ -265,3 +282,24 @@ class PositionGalSimFakesTask(FakeSourcesTask):
                                                  BBox,
                                                  PARENT)
             subMaskedImage += galMaskedImage
+
+            """
+            #
+            galMaskedImage.getMask().set(self.bitmask)
+
+            maskedImage = exposure.getMaskedImage()
+            try:
+                maskedImage.getMask().removeAndClearMaskPlane('CROSSTALK',
+                                                              True)
+            except Exception:
+                pass
+            try:
+                maskedImage.getMask().removeAndClearMaskPlane('UNMASKEDNAN',
+                                                              True)
+            except Exception:
+                pass
+            try:
+                maskedImage.getMask().removeAndClearMaskPlane('FAKE', True)
+            except Exception:
+                pass
+            """
