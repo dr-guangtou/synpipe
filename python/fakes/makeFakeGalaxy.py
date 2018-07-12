@@ -6,6 +6,7 @@ import warnings
 import numpy as np
 
 import galsim
+print galsim.__file__
 
 import pyfits as fits
 
@@ -82,8 +83,7 @@ def makeGalaxy(flux, gal, psfImage,
                                 drawMethod=drawMethod,
                                 transform=transform,
                                 addShear=addShear,
-                                addPoisson=addPoisson, 
-                                trunc=trunc)
+                                addPoisson=addPoisson)
 
 
 def parseRealGalaxy(gal):
@@ -287,8 +287,7 @@ def galSimFakeCosmos(cosmosCat, calib, gal,
                      returnObj=True, sersic_prec=0.02,
                      drawMethod='no_pixel', scale=1.0,
                      transform=None, addShear=False,
-                     addPoisson=False,
-                     trunc=10):
+                     addPoisson=False):
     """
     Generate fake galaxy using galSim.COSMOSCatalog objects.
     """
@@ -306,8 +305,7 @@ def galSimFakeCosmos(cosmosCat, calib, gal,
     galIndex = galFound[0]
     cosObj = cosmosCat.makeGalaxy(index=galIndex,
                                   sersic_prec=sersic_prec,
-                                  gal_type='parametric',
-                                  trunc=trunc)
+                                  gal_type='parametric')
     hstFlux = cosObj.flux
 
     # If necessary, apply addtion shear (e.g. for weak lensing test)
