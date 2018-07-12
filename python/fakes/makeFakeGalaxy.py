@@ -17,7 +17,6 @@ def makeGalaxy(flux, gal, psfImage,
                transform=None, addShear=False,
                calib=None,
                sersic_prec=0.01, addPoisson=False):
-    trunc=10.0
     """
     Function called by task to make galaxy images
 
@@ -36,6 +35,7 @@ def makeGalaxy(flux, gal, psfImage,
     including maybe drawMethod and trunc...
     """
     if galType is 'sersic':
+        raise ValueError
         return galSimFakeSersic(flux, gal, psfImage=psfImage,
                                 trunc=trunc,
                                 drawMethod=drawMethod,
@@ -45,6 +45,7 @@ def makeGalaxy(flux, gal, psfImage,
                                 addPoisson=addPoisson)
 
     if galType is 'dsersic':
+        raise ValueError
         # TODO: addShear option is not available for double Sersic yet
         (comp1, comp2) = parseDoubleSersic(flux, gal)
         return galSimFakeDoubleSersic(comp1, comp2, psfImage=psfImage,
@@ -56,6 +57,7 @@ def makeGalaxy(flux, gal, psfImage,
                                       addPoisson=addPoisson)
 
     if galType is 'real':
+        raise ValueError
         # TODO: For real galaxies, we need to decide which to use: index in the
         # catalog or Object ID.  Now, I just use Index
         (real_galaxy_catalog, index) = parseRealGalaxy(gal)
