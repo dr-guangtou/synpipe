@@ -13,10 +13,11 @@ import pyfits as fits
 
 def makeGalaxy(flux, gal, psfImage,
                galType='sersic', cosmosCat=None,
-               drawMethod='no_pixel', trunc=10.0,
+               drawMethod='no_pixel',
                transform=None, addShear=False,
                calib=None,
                sersic_prec=0.01, addPoisson=False):
+    trunc=10.0
     """
     Function called by task to make galaxy images
 
