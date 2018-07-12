@@ -83,7 +83,7 @@ def makeGalaxy(flux, gal, psfImage,
                                 transform=transform,
                                 addShear=addShear,
                                 addPoisson=addPoisson, 
-                                trunc=truc)
+                                trunc=trunc)
 
 
 def parseRealGalaxy(gal):
