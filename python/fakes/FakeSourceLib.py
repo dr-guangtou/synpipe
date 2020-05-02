@@ -72,6 +72,12 @@ def addNoise(galImage, detector, rand_gen=None):
                                  size=(galImage.getHeight(),
                                        galImage.getWidth()))
     noiseImage = lsst.afw.image.ImageF(noiseArray.astype(np.float32))
-    galImage += noiseImage
+
+    ### Modified by Ryoma Murata on 07/12/2018
+    ### Gaussian noise model is not correct for the Poisson noise since this can have negative values.
+    if False:
+        galImage += noiseImage
+    else:
+        pass
 
     return lsst.afw.image.MaskedImageF(galImage, None, varImage)
